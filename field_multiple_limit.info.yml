@@ -1,0 +1,4 @@
+name: Field Multiple Limit
+description: Provides extra field formatter settings to specify the number of values to display on multi-value fields.
+core: 8.x
+package: Fields

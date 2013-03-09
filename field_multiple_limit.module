@@ -2,10 +2,8 @@
 
 /**
  * @file
- * Provides formatter settings for limiting the number of values to display on
+ * Provides formatter settings to limit the number of values to displayed on
  * multi-value fields.
- *
- * Based on Field Delimiter module (http://drupal.org/project/field_delimiter).
  */
 
 define('FIELD_MULTIPLE_LIMIT_ALL', -1);

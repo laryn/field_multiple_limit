@@ -46,22 +46,21 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
 /**
  * Implements hook_field_formatter_settings_form_alter().
  */
-function field_multiple_limit_field_formatter_settings_form_alter(&$settings_form, $context) {
+function field_multiple_limit_field_formatter_settings_form_alter(&$element, &$form_state, $context) {
   if ($context['field']['cardinality'] > 1 || $context['field']['cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
-    $settings = $context['instance']['display'][$context['view_mode']]['settings'];
 
-    $settings_form['field_multiple_limit'] = array(
-      '#type' => 'select',
+    $element['field_multiple_limit'] = array(
+      '#type' => 'number',
       '#title' => t('Number of values to display'),
-      '#options' => array(FIELD_MULTIPLE_LIMIT_ALL => t('All')) + drupal_map_assoc(range(1, 10)),
-      '#default_value' => $settings['field_multiple_limit'],
+      '#min' => -1,
+      '#default_value' => $context['formatter']->getSetting('field_multiple_limit'),
     );
 
-    $settings_form['field_multiple_limit_offset'] = array(
-      '#type' => 'select',
+    $element['field_multiple_limit_offset'] = array(
+      '#type' => 'number',
       '#title' => t('Number of values to skip'),
-      '#options' => drupal_map_assoc(range(0, 10)),
-      '#default_value' => $settings['field_multiple_limit_offset'],
+      '#min' => 0,
+      '#default_value' => $context['formatter']->getSetting('field_multiple_limit_offset'),
     );
   }
 }

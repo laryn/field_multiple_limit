@@ -40,7 +40,7 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
     }
 
     if (!empty($offset)) {
-      $summary[] = '<br />' . t('Skipping the first @offset values', array('@offset' => $offset));
+      $summary[] = . t('Skipping the first @offset values', array('@offset' => $offset));
     }
   }
 }

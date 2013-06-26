@@ -32,19 +32,15 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
     $limit = $context['formatter']->getSetting('field_multiple_limit');
     $offset = $context['formatter']->getSetting('field_multiple_limit_offset');
 
-    if (!empty($summary)) {
-      $summary .= '<br />';
-    }
-
     if (!empty($limit) && $limit != FIELD_MULTIPLE_LIMIT_ALL) {
-      $summary .= t('Displaying @limit values', array('@limit' => $limit));
+      $summary[] = t('Displaying @limit values', array('@limit' => $limit));
     }
     else {
-      $summary .= t('Displaying all values');
+      $summary[] = t('Displaying all values');
     }
 
     if (!empty($offset)) {
-      $summary .= '<br />' . t('Skipping the first @offset values', array('@offset' => $offset));
+      $summary[] = '<br />' . t('Skipping the first @offset values', array('@offset' => $offset));
     }
   }
 }

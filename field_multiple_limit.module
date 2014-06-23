@@ -12,16 +12,6 @@
  */
 define('FIELD_MULTIPLE_LIMIT_ALL', -1);
 
-/**
- * Implements hook_field_formatter_info_alter().
- */
-function field_multiple_limit_field_formatter_info_alter(&$info) {
-  // Added to all formatters.
-  foreach ($info as $formatter_key => &$formatter) {
-    $formatter['settings']['field_multiple_limit'] = FIELD_MULTIPLE_LIMIT_ALL;
-    $formatter['settings']['field_multiple_limit_offset'] = 0;
-  }
-}
 
 /**
  * Implements hook_field_formatter_settings_summary_alter().

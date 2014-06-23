@@ -39,24 +39,32 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
 /**
  * Implements hook_field_formatter_third_party_settings_form().
  * 
- * Targets multivalued fields only
+ * Targets multivalued fields only.
+ *
+ * @todo #states property for the limit + offset, depending on the new boolean.
+ *
  */
 function field_multiple_limit_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, $form_state) {
   if ($field_definition->isMultiple()) {
-
-    $element['field_multiple_limit'] = array(
-      '#type' => 'number',
-      '#title' => t('Number of values to display'),
-      '#min' => -1,
-      '#default_value' => $context['formatter']->getSetting('field_multiple_limit'),
+    $element['limit_values'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Limit the number of values to display'),
+      '#default_value' => $plugin->getThirdPartySetting('field_multiple_limit', 'limit_values'),
     );
 
-    $element['field_multiple_limit_offset'] = array(
+    $element['count'] = array(
+      '#type' => 'number',
+      '#title' => t('Number of values to display'),
+      '#min' => 1,
+      '#default_value' => $plugin->getThirdPartySetting('field_multiple_limit', 'count'),
+    );
+    $element['offset'] = array(
       '#type' => 'number',
       '#title' => t('Number of values to skip'),
       '#min' => 0,
-      '#default_value' => $context['formatter']->getSetting('field_multiple_limit_offset'),
+      '#default_value' => $plugin->getThirdPartySetting('field_multiple_limit', 'offset'),
     );
+    return $element;
   }
 }
 

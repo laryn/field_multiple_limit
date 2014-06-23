@@ -18,19 +18,20 @@ define('FIELD_MULTIPLE_LIMIT_ALL', -1);
  */
 function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, $context) {
 
-    $limit = $context['formatter']->getSetting('field_multiple_limit');
-    $offset = $context['formatter']->getSetting('field_multiple_limit_offset');
   if ($context['field_definition']->isMultiple()) {
 
-    if (!empty($limit) && $limit != FIELD_MULTIPLE_LIMIT_ALL) {
-      $summary[] = t('Displaying @limit values', array('@limit' => $limit));
-    }
-    else {
-      $summary[] = t('Displaying all values');
-    }
+    // Only display count + offset if the limit_values is TRUE
+    if ($context['formatter']->getThirdPartySetting('field_multiple_limit', 'limit_values')) { 
 
-    if (!empty($offset)) {
-      $summary[] = t('Skipping the first @offset values', array('@offset' => $offset));
+      $count = $context['formatter']->getThirdPartySetting('field_multiple_limit', 'count');
+      if (!empty($count)) {
+        $summary[] = format_plural($count, 'Display 1 value', 'Display @count values');
+      }
+
+      $offset = $context['formatter']->getThirdPartySetting('field_multiple_limit', 'offset');
+      if (!empty($offset)) {
+        $summary[] = format_plural($offset, 'Skip 1 value', 'Skip @count values');
+      }
     }
   }
 }

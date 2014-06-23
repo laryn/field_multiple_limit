@@ -46,9 +46,11 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
 }
 
 /**
- * Implements hook_field_formatter_settings_form_alter().
+ * Implements hook_field_formatter_third_party_settings_form().
+ * 
+ * Targets multivalued fields only
  */
-function field_multiple_limit_field_formatter_settings_form_alter(&$element, &$form_state, $context) {
+function field_multiple_limit_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, $form_state) {
   if ($context['field']['cardinality'] > 1 || $context['field']['cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
 
     $element['field_multiple_limit'] = array(

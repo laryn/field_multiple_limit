@@ -27,10 +27,10 @@ function field_multiple_limit_field_formatter_info_alter(&$info) {
  * Implements hook_field_formatter_settings_summary_alter().
  */
 function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, $context) {
-  if ($context['field']['cardinality'] > 1 || $context['field']['cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
 
     $limit = $context['formatter']->getSetting('field_multiple_limit');
     $offset = $context['formatter']->getSetting('field_multiple_limit_offset');
+  if ($context['field_definition']->isMultiple()) {
 
     if (!empty($limit) && $limit != FIELD_MULTIPLE_LIMIT_ALL) {
       $summary[] = t('Displaying @limit values', array('@limit' => $limit));
@@ -51,7 +51,7 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
  * Targets multivalued fields only
  */
 function field_multiple_limit_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, $form_state) {
-  if ($context['field']['cardinality'] > 1 || $context['field']['cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
+  if ($field_definition->isMultiple()) {
 
     $element['field_multiple_limit'] = array(
       '#type' => 'number',

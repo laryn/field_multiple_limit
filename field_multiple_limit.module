@@ -44,7 +44,8 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
  * @todo #states property for the limit + offset, depending on the new boolean.
  *
  */
-function field_multiple_limit_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, $form_state) {
+function field_multiple_limit_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, \Drupal\Core\Form\FormStateInterface $form_state) {
+
   if ($field_definition->isMultiple()) {
     $element['limit_values'] = array(
       '#type' => 'checkbox',

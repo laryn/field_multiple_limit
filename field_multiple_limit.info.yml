@@ -1,6 +1,6 @@
 name: Field Multiple Limit
 type: module
-description: Provides extra field formatter settings to specify the number of values to display on multi-value fields.
+description: Provides field formatter settings to limit the number of values to display on multi-value fields.
 core: 8.x
 package: Field Formatters
 dependencies:

@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Provides formatter settings to limit the number of values to displayed on
+ * Provides field formatter settings to limit the number of values to display on
  * multi-value fields.
  */
 

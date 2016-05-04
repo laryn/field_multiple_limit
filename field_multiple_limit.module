@@ -18,7 +18,7 @@ define('FIELD_MULTIPLE_LIMIT_ALL', -1);
  */
 function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, $context) {
 
-  if ($context['field_definition']->isMultiple()) {
+  if ($context['field_definition']->getFieldStorageDefinition()->isMultiple()) {
 
     // Only display count + offset if the limit_values is TRUE
     if ($context['formatter']->getThirdPartySetting('field_multiple_limit', 'limit_values')) { 
@@ -46,7 +46,7 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
  */
 function field_multiple_limit_field_formatter_third_party_settings_form(\Drupal\Core\Field\FormatterInterface $plugin, \Drupal\Core\Field\FieldDefinitionInterface $field_definition, $view_mode, $form, \Drupal\Core\Form\FormStateInterface $form_state) {
 
-  if ($field_definition->isMultiple()) {
+  if ($field_definition->getFieldStorageDefinition()->isMultiple()) {
     $element['limit_values'] = array(
       '#type' => 'checkbox',
       '#title' => t('Limit the number of values to display'),

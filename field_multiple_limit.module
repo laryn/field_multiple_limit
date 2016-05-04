@@ -25,12 +25,12 @@ function field_multiple_limit_field_formatter_settings_summary_alter(&$summary, 
 
       $count = $context['formatter']->getThirdPartySetting('field_multiple_limit', 'count');
       if (!empty($count)) {
-        $summary[] = format_plural($count, 'Display 1 value', 'Display @count values');
+        $summary[] = \Drupal::translation()->formatPlural($count, 'Display 1 value', 'Display @count values');
       }
 
       $offset = $context['formatter']->getThirdPartySetting('field_multiple_limit', 'offset');
       if (!empty($offset)) {
-        $summary[] = format_plural($offset, 'Skip 1 value', 'Skip @count values');
+        $summary[] = \Drupal::translation()->formatPlural($offset, 'Skip 1 value', 'Skip @count values');
       }
     }
   }
